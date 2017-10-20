@@ -1,6 +1,6 @@
 <template>
   <el-row>
-    <el-date-picker :editable="false" v-model="sendTime" type="datetime" placeholder="选择时间范围"></el-date-picker>
+    <div>{{msg}}</div>
   </el-row>
 </template>
 
@@ -9,9 +9,14 @@ export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
-      sendTime: null
+      msg: null
     }
+  },
+  created () {
+    this.$ajax.request('/vn').then(res => {
+      console.log(res)
+      this.msg = res.data
+    })
   }
 }
 </script>
